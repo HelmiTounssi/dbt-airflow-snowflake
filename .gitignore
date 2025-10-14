@@ -23,3 +23,10 @@ Thumbs.db
 *.csv
 *.png
 *.pdf
+
+# Ignore dbt log files
+dbt_debug_error.txt
+dbt_debug_output.txt
+dbt_run_error.txt
+dbt_run_output.txt
+dbt_sql_data_warehouse/logs/dbt.log
