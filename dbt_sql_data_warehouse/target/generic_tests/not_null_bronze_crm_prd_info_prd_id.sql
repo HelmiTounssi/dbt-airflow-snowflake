@@ -1,0 +1,1 @@
+{{ test_not_null(column_name="prd_id", model=get_where_subquery(ref('bronze_crm_prd_info'))) }}

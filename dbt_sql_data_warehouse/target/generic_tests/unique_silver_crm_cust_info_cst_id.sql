@@ -1,0 +1,1 @@
+{{ test_unique(column_name="cst_id", model=get_where_subquery(ref('silver_crm_cust_info'))) }}

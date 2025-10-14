@@ -1,0 +1,1 @@
+{{ test_not_null(column_name="sls_ord_num", model=get_where_subquery(ref('silver_crm_sales_details'))) }}

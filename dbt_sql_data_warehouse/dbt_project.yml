@@ -1,0 +1,31 @@
+name: 'dbt_sql_data_warehouse'
+version: '1.0.0'
+config-version: 2
+
+profile: 'dbt_sql_data_warehouse'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+seeds:
+  dbt_sql_data_warehouse:
+    +schema: BRONZE
+
+models:
+  dbt_sql_data_warehouse:
+    +materialized: view
+    bronze:
+      +schema: BRONZE
+    silver:
+      +schema: SILVER
+    gold:
+      +schema: GOLD

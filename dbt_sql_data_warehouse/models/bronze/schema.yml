@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: bronze_crm_cust_info
+    columns:
+      - name: cst_id
+        tests:
+          - unique
+          - not_null
+  - name: bronze_crm_prd_info
+    columns:
+      - name: prd_id
+        tests:
+          - unique
+          - not_null
+  - name: bronze_crm_sales_details
+    columns:
+      - name: sls_ord_num
+        tests:
+          - not_null
+  - name: bronze_erp_loc_a101
+    columns:
+      - name: cid
+        tests:
+          - not_null
+  - name: bronze_erp_cust_az12
+    columns:
+      - name: cid
+        tests:
+          - not_null
+  - name: bronze_erp_px_cat_g1v2
+    columns:
+      - name: id
+        tests:
+          - not_null

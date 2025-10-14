@@ -1,0 +1,1 @@
+{{ test_not_null(column_name="cid", model=get_where_subquery(ref('bronze_erp_loc_a101'))) }}

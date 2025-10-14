@@ -1,0 +1,1 @@
+{{ test_not_null(column_name="id", model=get_where_subquery(ref('bronze_erp_px_cat_g1v2'))) }}
