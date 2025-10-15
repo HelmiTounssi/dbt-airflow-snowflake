@@ -21,13 +21,15 @@ source airflow_venv/Scripts/activate  # On Windows
 
 ## 2. Install Apache Airflow
 
-Install Airflow and the necessary providers (e.g., `apache-airflow-providers-snowflake` for Snowflake integration) using the `--user` flag to install into your user directory.
+Install Airflow and the necessary providers (e.g., `apache-airflow-providers-snowflake` for Snowflake integration) directly into your active virtual environment.
 
 ```bash
-pip install --user "apache-airflow[cncf.kubernetes,celery,apache.snowflake,apache.apache-spark,databricks,docker,google,http,microsoft.azure,mysql,postgres,redis,sftp,slack,ssh]" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.9.3/constraints-3.8.txt"
+pip install "apache-airflow[cncf.kubernetes,celery,apache.snowflake,apache.apache-spark,databricks,docker,google,http,microsoft.azure,mysql,postgres,redis,sftp,slack,ssh]" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.9.3/constraints-3.8.txt"
 # Replace constraints-2.9.3 and constraints-3.8.txt with the appropriate versions for your setup.
 # The above command installs Airflow with a wide range of common providers. Adjust as needed.
 ```
+
+**Important**: When installing within an active virtual environment, **do not use the `--user` flag**. Packages should be installed directly into the virtual environment.
 
 **Note**: The `constraints-X.Y.Z/constraints-3.8.txt` URL should match your Airflow version and Python version. Check the official Airflow documentation for the correct constraints file.
 
