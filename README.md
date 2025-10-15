@@ -60,39 +60,40 @@ This project aims to demonstrate a robust data warehousing solution using dbt fo
 
 ## Airflow Integration
 
-The dbt jobs in this project are orchestrated using Apache Airflow. This typically involves:
+The dbt jobs in this project are orchestrated using Apache Airflow. A sample DAG (`dbt_dag.py`) is provided in the `dags/` directory to demonstrate this integration.
 
-- **Airflow DAGs**: Directed Acyclic Graphs (DAGs) define the sequence of tasks, including dbt commands (e.g., `dbt run`, `dbt test`).
-- **dbt Operator**: Using a dbt-specific Airflow operator (or a BashOperator to execute dbt CLI commands) to trigger dbt runs.
-- **Connections**: Configuring Airflow connections to Snowflake and potentially other data sources.
-- **Scheduling**: Defining schedules for when the dbt jobs should run.
+### Airflow Setup
 
-Example of a simple Airflow DAG task to run dbt:
+To integrate this dbt project with Airflow, follow these steps:
 
-```python
-from airflow import DAG
-from airflow.operators.bash import BashOperator
-from datetime import datetime
+1.  **Place the dbt project and DAGs**:
+    *   Copy the entire `dbt_sql_data_warehouse` directory into your Airflow DAGs folder (e.g., `/opt/airflow/dags/dbt_sql_data_warehouse`).
+    *   Copy the `dags/dbt_dag.py` file into your Airflow DAGs folder (e.g., `/opt/airflow/dags/dbt_dag.py`).
 
-with DAG(
-    dag_id='dbt_data_warehouse',
-    start_date=datetime(2023, 1, 1),
-    schedule_interval='@daily',
-    catchup=False
-) as dag:
-    dbt_run = BashOperator(
-        task_id='dbt_run_models',
-        bash_command='cd /path/to/your/dbt_sql_data_warehouse && dbt run --project-dir .',
-    )
+2.  **Configure `dbt_dag.py`**:
+    *   Open `dags/dbt_dag.py`.
+    *   **`DBT_EXECUTABLE_PATH`**: Update this variable to the absolute path of your `dbt.exe` executable within the Airflow environment. Since you don't have admin access, ensure `dbt` is installed in a user-accessible location.
+        *   Example: `DBT_EXECUTABLE_PATH = "/usr/local/bin/dbt"` (for Linux/WSL) or `"C:\\Users\\your_user\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\Scripts\\dbt.exe"` (for Windows, if Airflow runs on Windows).
+    *   **`DBT_PROJECT_DIR`**: Update this variable to the absolute path of your `dbt_sql_data_warehouse` directory within the Airflow environment.
+        *   Example: `DBT_PROJECT_DIR = "/opt/airflow/dags/dbt_sql_data_warehouse"`
 
-    dbt_test = BashOperator(
-        task_id='dbt_test_models',
-        bash_command='cd /path/to/your/dbt_sql_data_warehouse && dbt test --project-dir .',
-    )
+3.  **dbt Profiles**:
+    *   Ensure your `profiles.yml` file (typically located at `~/.dbt/profiles.yml` in the Airflow worker's home directory) is correctly configured to connect to your Snowflake instance. This file should be accessible by the Airflow user.
 
-    dbt_run >> dbt_test
-```
-*Note: Replace `/path/to/your/dbt_sql_data_warehouse` with the actual path to your dbt project within your Airflow environment.*
+4.  **Airflow Connections**:
+    *   If your `profiles.yml` uses environment variables for credentials (recommended for security), ensure these environment variables are set in your Airflow environment.
+    *   Alternatively, you can configure a Snowflake connection directly in Airflow UI (Admin -> Connections) if you have the necessary permissions. However, the provided `dbt_dag.py` uses `dbt` CLI commands, which rely on `profiles.yml`, so direct Airflow connections are less critical for this setup.
+
+### DAG Structure
+
+The `dbt_data_warehouse_pipeline` DAG includes the following tasks, executed sequentially using `BashOperator`:
+
+-   `dbt_deps`: Installs dbt package dependencies.
+-   `dbt_seed`: Loads seed data into the data warehouse.
+-   `dbt_run`: Executes all dbt models.
+-   `dbt_test`: Runs tests defined in the dbt project.
+
+This setup allows for a robust and automated data transformation pipeline within Airflow.
 
 ## Contributing
 
