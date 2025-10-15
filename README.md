@@ -60,7 +60,7 @@ This project aims to demonstrate a robust data warehousing solution using dbt fo
 
 ## Airflow Integration
 
-The dbt jobs in this project are orchestrated using Apache Airflow. A sample DAG (`dbt_dag.py`) is provided in the `dags/` directory to demonstrate this integration.
+The dbt jobs in this project are orchestrated using Apache Airflow. A sample DAG (`dbt_dag.py`) is provided in the `dags/` directory to demonstrate this integration. For detailed instructions on setting up Airflow locally without admin access, please refer to [AIRFLOW_SETUP.md](AIRFLOW_SETUP.md).
 
 ### Airflow Setup
 
