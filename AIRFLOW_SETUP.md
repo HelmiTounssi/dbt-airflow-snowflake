@@ -6,7 +6,7 @@ This guide provides instructions for setting up a local Apache Airflow environme
 
 Before you begin, ensure you have:
 
-*   **Python 3.8+**: Airflow requires a compatible Python version.
+*   **Python 3.13**: Your current Python version. Airflow requires a compatible Python version.
 *   **pip**: Python's package installer.
 
 ## 1. Set up a Virtual Environment (Recommended)
@@ -24,14 +24,20 @@ source airflow_venv/Scripts/activate  # On Windows
 Install Airflow and the necessary providers (e.g., `apache-airflow-providers-snowflake` for Snowflake integration) directly into your active virtual environment.
 
 ```bash
-pip install "apache-airflow[cncf.kubernetes,celery,apache.snowflake,apache.apache-spark,databricks,docker,google,http,microsoft.azure,mysql,postgres,redis,sftp,slack,ssh]" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.9.3/constraints-3.8.txt"
-# Replace constraints-2.9.3 and constraints-3.8.txt with the appropriate versions for your setup.
-# The above command installs Airflow with a wide range of common providers. Adjust as needed.
+# IMPORTANT: Choose an Airflow version compatible with your Python 3.13 environment.
+# Refer to the official Apache Airflow documentation for the latest compatibility matrix:
+# https://airflow.apache.org/docs/apache-airflow/stable/installation/index.html
+#
+# Example for a compatible version (you need to verify the exact version and constraints):
+# pip install "apache-airflow[cncf.kubernetes,celery,apache.snowflake,apache.apache-spark,databricks,docker,google,http,microsoft.azure,mysql,postgres,redis,sftp,slack,ssh]" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-X.Y.Z/constraints-3.13.txt"
+#
+# For now, we will provide a generic command. You MUST replace `apache-airflow` with a compatible version.
+pip install "apache-airflow[cncf.kubernetes,celery,apache.snowflake,apache.apache-spark,databricks,docker,google,http,microsoft.azure,mysql,postgres,redis,sftp,slack,ssh]"
 ```
 
 **Important**: When installing within an active virtual environment, **do not use the `--user` flag**. Packages should be installed directly into the virtual environment.
 
-**Note**: The `constraints-X.Y.Z/constraints-3.8.txt` URL should match your Airflow version and Python version. Check the official Airflow documentation for the correct constraints file.
+**Note**: The `constraints-X.Y.Z/constraints-3.13.txt` URL should match your chosen Airflow version and Python 3.13. Always check the official Airflow documentation for the correct constraints file and compatible Airflow version for Python 3.13.
 
 ## 3. Configure AIRFLOW_HOME
 
