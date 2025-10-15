@@ -19,4 +19,5 @@ SELECT
         AS DATE
     ) AS prd_end_dt,
     CURRENT_TIMESTAMP() AS dwh_create_date
-FROM POC2.PUBLIC_bronze.bronze_crm_prd_info
+FROM 
+    POC2.PUBLIC_bronze.bronze_crm_prd_info

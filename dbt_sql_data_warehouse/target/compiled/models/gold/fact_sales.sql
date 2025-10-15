@@ -10,8 +10,14 @@ SELECT
     sd.sls_sales    AS sales_amount,
     sd.sls_quantity AS quantity,
     sd.sls_price    AS price
-FROM POC2.PUBLIC_silver.silver_crm_sales_details sd
-LEFT JOIN POC2.PUBLIC_gold.dim_products pr
+FROM 
+    POC2.PUBLIC_silver.silver_crm_sales_details
+ sd
+LEFT JOIN 
+    POC2.PUBLIC_gold.dim_products
+ pr
     ON sd.sls_prd_key = pr.product_number
-LEFT JOIN POC2.PUBLIC_gold.dim_customers cu
+LEFT JOIN 
+    POC2.PUBLIC_gold.dim_customers
+ cu
     ON sd.sls_cust_id = cu.customer_id

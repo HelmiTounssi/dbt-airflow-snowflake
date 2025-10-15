@@ -18,7 +18,9 @@ SELECT
     sls_sales,
     sls_quantity,
     sls_price
-FROM POC2.PUBLIC_BRONZE.crm_sales_details
+FROM 
+    POC2.PUBLIC_BRONZE.crm_sales_details
+
     )
 ;
 

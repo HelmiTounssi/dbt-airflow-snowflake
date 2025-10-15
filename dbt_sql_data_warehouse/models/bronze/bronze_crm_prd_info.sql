@@ -8,4 +8,4 @@ SELECT
     prd_line,
     prd_start_dt,
     prd_end_dt
-FROM {{ source('source_crm', 'crm_prd_info') }}
+FROM {{ get_source_data('source_crm', 'crm_prd_info') }}

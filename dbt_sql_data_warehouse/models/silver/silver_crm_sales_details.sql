@@ -11,4 +11,4 @@ SELECT
     sls_quantity,
     sls_price,
     CURRENT_TIMESTAMP() AS dwh_create_date
-FROM {{ ref('bronze_crm_sales_details') }}
+FROM {{ get_ref_data('bronze_crm_sales_details') }}

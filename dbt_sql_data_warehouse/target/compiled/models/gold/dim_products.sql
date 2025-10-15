@@ -12,7 +12,11 @@ SELECT
     pn.prd_cost     AS cost,
     pn.prd_line     AS product_line,
     pn.prd_start_dt AS start_date
-FROM POC2.PUBLIC_silver.silver_crm_prd_info pn
-LEFT JOIN POC2.PUBLIC_silver.silver_erp_px_cat_g1v2 pc
+FROM 
+    POC2.PUBLIC_silver.silver_crm_prd_info
+ pn
+LEFT JOIN 
+    POC2.PUBLIC_silver.silver_erp_px_cat_g1v2
+ pc
     ON pn.cat_id = pc.id
 WHERE pn.prd_end_dt IS NULL

@@ -9,4 +9,4 @@ SELECT
     cst_gndr,
     cst_create_date,
     CURRENT_TIMESTAMP() AS dwh_create_date
-FROM {{ ref('bronze_crm_cust_info') }}
+FROM {{ get_ref_data('bronze_crm_cust_info') }}

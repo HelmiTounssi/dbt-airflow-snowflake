@@ -10,4 +10,4 @@ SELECT
     sls_sales,
     sls_quantity,
     sls_price
-FROM {{ source('source_crm', 'crm_sales_details') }}
+FROM {{ get_source_data('source_crm', 'crm_sales_details') }}

@@ -19,7 +19,9 @@ SELECT
     sls_quantity,
     sls_price,
     CURRENT_TIMESTAMP() AS dwh_create_date
-FROM POC2.PUBLIC_bronze.bronze_crm_sales_details
+FROM 
+    POC2.PUBLIC_bronze.bronze_crm_sales_details
+
     )
 ;
 

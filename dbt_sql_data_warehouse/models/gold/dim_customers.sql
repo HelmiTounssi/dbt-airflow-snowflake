@@ -14,8 +14,8 @@ SELECT
     END                                AS gender,
     ca.bdate                           AS birthdate,
     ci.cst_create_date                 AS create_date
-FROM {{ ref('silver_crm_cust_info') }} ci
-LEFT JOIN {{ ref('silver_erp_cust_az12') }} ca
+FROM {{ get_ref_data('silver_crm_cust_info') }} ci
+LEFT JOIN {{ get_ref_data('silver_erp_cust_az12') }} ca
     ON ci.cst_key = ca.cid
-LEFT JOIN {{ ref('silver_erp_loc_a101') }} la
+LEFT JOIN {{ get_ref_data('silver_erp_loc_a101') }} la
     ON ci.cst_key = la.cid

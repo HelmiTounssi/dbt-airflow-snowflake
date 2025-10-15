@@ -29,7 +29,9 @@ FROM (
     SELECT
         *,
         ROW_NUMBER() OVER (PARTITION BY cst_id ORDER BY cst_create_date DESC) AS flag_last
-    FROM POC2.PUBLIC_bronze.bronze_crm_cust_info
+    FROM 
+    POC2.PUBLIC_bronze.bronze_crm_cust_info
+
     WHERE cst_id IS NOT NULL
 ) t
 WHERE flag_last = 1

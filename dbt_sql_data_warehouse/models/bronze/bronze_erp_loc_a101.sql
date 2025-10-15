@@ -3,4 +3,4 @@
 SELECT
     cid,
     cntry
-FROM {{ source('source_erp', 'erp_loc_a101') }}
+FROM {{ get_source_data('source_erp', 'erp_loc_a101') }}

@@ -34,8 +34,8 @@
       },
       "stop": {
         "line": 12,
-        "col": 38,
-        "index": 250
+        "col": 47,
+        "index": 259
       }
     },
     "expanded_span": {
@@ -45,9 +45,9 @@
         "index": 167
       },
       "stop": {
-        "line": 12,
-        "col": 44,
-        "index": 205
+        "line": 14,
+        "col": 1,
+        "index": 213
       }
     }
   }

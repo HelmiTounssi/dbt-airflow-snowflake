@@ -17,7 +17,9 @@ SELECT
         ELSE TRIM(cntry)
     END AS cntry,
     CURRENT_TIMESTAMP() AS dwh_create_date
-FROM POC2.PUBLIC_bronze.bronze_erp_loc_a101
+FROM 
+    POC2.PUBLIC_bronze.bronze_erp_loc_a101
+
     )
 ;
 

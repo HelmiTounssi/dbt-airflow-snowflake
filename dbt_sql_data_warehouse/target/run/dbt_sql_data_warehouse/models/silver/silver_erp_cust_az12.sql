@@ -23,7 +23,9 @@ SELECT
         ELSE 'n/a'
     END AS gen,
     CURRENT_TIMESTAMP() AS dwh_create_date
-FROM POC2.PUBLIC_bronze.bronze_erp_cust_az12
+FROM 
+    POC2.PUBLIC_bronze.bronze_erp_cust_az12
+
     )
 ;
 

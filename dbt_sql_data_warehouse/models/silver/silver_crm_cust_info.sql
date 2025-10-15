@@ -21,7 +21,7 @@ FROM (
     SELECT
         *,
         ROW_NUMBER() OVER (PARTITION BY cst_id ORDER BY cst_create_date DESC) AS flag_last
-    FROM {{ ref('bronze_crm_cust_info') }}
+    FROM {{ get_ref_data('bronze_crm_cust_info') }}
     WHERE cst_id IS NOT NULL
 ) t
 WHERE flag_last = 1
